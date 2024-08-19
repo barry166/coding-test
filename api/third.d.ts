@@ -6,6 +6,8 @@ declare module 'express-async-errors';
 
 namespace Express {
   interface Request {
+    appid?: string;
+
     user?: {
       did: string;
       role: string;

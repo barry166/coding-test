@@ -10,6 +10,8 @@ import fallback from '@blocklet/sdk/lib/middlewares/fallback';
 
 import logger from './libs/logger';
 import routes from './routes';
+import checkAppId from './utils/middleware';
+import db from './utils/database';
 
 dotenv.config();
 
@@ -24,7 +26,7 @@ app.use(express.urlencoded({ extended: true, limit: '1 mb' }));
 app.use(cors());
 
 const router = express.Router();
-router.use('/api', routes);
+router.use('/api', checkAppId, routes); // 应用中间件
 app.use(router);
 
 const isProduction = process.env.NODE_ENV === 'production' || process.env.ABT_NODE_SERVICE_ENV === 'production';
@@ -42,6 +44,10 @@ if (isProduction) {
 }
 
 const port = parseInt(process.env.BLOCKLET_PORT!, 10);
+
+db.on('open', () => {
+  logger.info('> sqllite is ready');
+});
 
 export const server = app.listen(port, (err?: any) => {
   if (err) throw err;
