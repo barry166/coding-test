@@ -1,3 +1,3 @@
-declare var blocklet: { prefix: string } | undefined;
+declare var blocklet: { prefix: string; appId: string } | undefined;
 
 declare module '*.svg';
