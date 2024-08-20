@@ -19,7 +19,7 @@ function Home() {
   };
 
   return !editMode ? (
-    <ProfileDisplay user={user} onEdit={handleEdit} />
+    <ProfileDisplay user={user || {}} onEdit={handleEdit} />
   ) : (
     <ProfileForm user={user || {}} onSave={handleSave} />
   );

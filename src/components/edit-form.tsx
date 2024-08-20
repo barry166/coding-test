@@ -22,6 +22,7 @@ function ProfileForm(props: IProps) {
       .post('/api/profile', data)
       .then(() => {
         // console.log('Profile updated successfully');
+        props.onSave(data);
       })
       .catch((err) => {
         console.error(err);

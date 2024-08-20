@@ -1,7 +1,7 @@
 import { IProfile } from '../types/profile';
 
 interface IProps {
-  user?: IProfile;
+  user: IProfile;
   onEdit: () => void;
 }
 
@@ -31,9 +31,5 @@ function ProfileDisplay(props: IProps) {
     </div>
   );
 }
-
-ProfileDisplay.defaultProps = {
-  user: {},
-};
 
 export default ProfileDisplay;
