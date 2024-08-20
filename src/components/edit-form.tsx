@@ -1,6 +1,7 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import api from '../libs/api';
 import { IProfile } from '../types/profile';
+import message from './message';
 
 interface IProps {
   user: IProfile;
@@ -17,15 +18,15 @@ function ProfileForm(props: IProps) {
   });
 
   const onSubmit: SubmitHandler<IProfile> = (data) => {
-    // console.log(data);
     api
       .post('/api/profile', data)
       .then(() => {
-        // console.log('Profile updated successfully');
+        message.success('保存成功');
         props.onSave(data);
       })
       .catch((err) => {
         console.error(err);
+        message.success('保存失败');
       });
   };
 
